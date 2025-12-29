@@ -1,0 +1,37 @@
+#define MAXIMIE 101
+
+enum klasabohatera{
+wojownik,
+mag,
+kapłan,
+łotrzyk,
+łowca,
+druid
+};
+
+enum rasabohatera{
+człowiek, 
+elf,
+krasnolud, 
+ork, 
+tiefling
+};
+
+enum statusbohatera{
+aktywny,
+na misji,
+ranny,
+zaginiony,
+zawieszony
+};
+
+typedef struct bohater{
+char imie[MAXIMIE];
+enum rasabohatera rasa;
+enum klasabohatera klasa;
+int poziom;
+int reputacja;
+enum statusbohatera status;
+struct bohater *next;
+struct bohater *prev;
+} bohater;
