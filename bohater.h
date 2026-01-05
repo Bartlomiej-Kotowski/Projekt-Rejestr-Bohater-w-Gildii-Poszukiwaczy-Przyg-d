@@ -15,7 +15,7 @@ enum klasabohatera{
 enum rasabohatera {
     CZLOWIEK,
     ELF,
-    RASNOLUD,
+    KRASNOLUD,
     ORK,
     TIEFLING
 };
