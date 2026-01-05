@@ -54,6 +54,7 @@ void MenuWyswietl(){
             printf("Nieprawidłowy wybór. Spróbuj ponownie.\n");
             continue;
         }
+        break;
     }
 }
 
