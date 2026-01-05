@@ -2,6 +2,6 @@
 #define MENU_H
 
  void MenuWyswietl();
- void MenuWybor();
+ int MenuWybor();
 
 #endif

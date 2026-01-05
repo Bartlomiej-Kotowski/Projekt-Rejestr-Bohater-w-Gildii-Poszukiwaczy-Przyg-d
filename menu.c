@@ -1,7 +1,17 @@
 #include<stdio.h>
 #include "menu.h"
+#include "funkcje.h"
+#include "pliki.h"
+
+int MenuWybor(){
+    int wybor;
+    printf("Wybierz opcję (0-8): ");
+    scanf("%d", &wybor);
+    return wybor;    
+}
 
 void MenuWyswietl(){
+    while(1){
     printf("=== Rejestr Bohaterów Gildii Poszukiwaczy Przygód ===\n");
     printf("1. Zarejestruj nowego bohatera\n");
     printf("2. Wyrejestruj bohatera\n");
@@ -12,42 +22,41 @@ void MenuWyswietl(){
     printf("7. Wczytaj liste z pliku\n");
     printf("8. Zapisz liste do pliku\n");
     printf("0. Wyjście z programu\n");
-}
-int MenuWybor(){
-    int wybor;
-    printf("Wybierz opcję (0-8): ");
-    scanf("%d", &wybor);
-    return wybor;    
-}
-
-switch(wybor){
+    switch(MenuWybor()){
         case 1:
             
-            break;
+            continue;
         case 2:
             
-            break;
+            continue;
         case 3:
             
-            break;
+            continue;
         case 4:
             
-            break;
+            continue;
         case 5:
             
-            break;
+            continue;
         case 6:
             
-            break;
+            continue;
         case 7:
             
-            break;
+            continue;
         case 8:
             
-            break;
+            continue;
         case 0:
             printf("Zamykanie programu...\n");
             break;
         default:
             printf("Nieprawidłowy wybór. Spróbuj ponownie.\n");
+            continue;
+        }
+        break;
     }
+}
+
+
+
