@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <funkcje.h>
+#include "funkcje.h"
 
 const char *kalsa[]={"WOJOWNIK","MAG","KAPLAN","LOTRZYK","LOWCA","DRUID"};
 const char *rasa[]={"CZLOWIEK","ELF","KRASNOLUD","ORK","TIEFLING"};
@@ -88,4 +88,28 @@ bohater* usun_bohatera(bohater *head){
 	}
 	printf("Nie znaleziono bohatera o imieniu %s\n",imie_do_u);
 	return head;
+}
+
+
+void wyswietl_liste(bohater *head){
+    if(head==NULL){
+        printf("Baza jest pusta nie ma bohaterów do wyświetlenia\n");
+        return;
+    }
+    int t=1;
+    bohater *biezancy=head;
+    printf("==== Lista bohaterów ====\n");
+    printf("Indesks  Imie    Rasa      Klasa     Poziom  Reputacja  Status\n");
+    while(biezancy!=NULL){
+        printf("%d. ", t);
+        printf("%s  ",biezancy->imie);
+        printf("%s  ",rasa[biezancy->rasa]);
+        printf("%s  ",kalsa[biezancy->klasa]);
+        printf("%d  ",biezancy->poziom);
+        printf("%d  ",biezancy->punkty);
+        printf("%s",status[biezancy->status]);
+        printf("\n");
+        t++;
+        biezancy=biezancy->next;       
+    }
 }
