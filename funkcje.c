@@ -113,3 +113,29 @@ void wyswietl_liste(bohater *head){
         biezancy=biezancy->next;       
     }
 }
+
+void wyszukaj_bohatera(bohater *head){
+	if(head==NULL){
+	printf("Baza jest pusta nie ma kogo szukać\n");
+		return;
+	}
+	char imieb[MAXIMIE];
+	int minpoziom;
+	int znaleziono=0;
+	printf("Podaj imie badz poczatek imienia bohatera ktorego szukasz:\n");
+	scanf("%100s",imieb);
+	printf("Minimalny poziom bohatera\n");
+	scanf("%d",&minpoziom);
+	printf("---WYNIKI POSZUKIWAN (IMIE NA: '%s', POZIOM: %d+\n",imieb,minpoziom);
+	bohater *biezacy=head;
+	while(biezacy!=NULL){
+		if(strncmp(biezacy->imie, imieb,strlen(imieb))==0&&biezacy->poziom>=minpoziom){
+			printf("%-15s | Klasa: %-10s | Poz:%d | Satatus: %s\n",biezacy->imie,klasabohatera[biezacy->klasabohatera],biezacy->poziom,statusbohatera[biezacy->statusbohatera] );
+			znaleziono=1;
+		}
+		biezacy=biezacy->next;
+	}
+	if(!znaleziono){
+		printf("Niestety nie ma takiego bohatera ktory pasuje twoim wymaganiom");
+	}
+}
