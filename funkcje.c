@@ -139,3 +139,42 @@ void wyszukaj_bohatera(bohater *head){
 		printf("Niestety nie ma takiego bohatera ktory pasuje twoim wymaganiom");
 	}
 }
+
+void sortuj_bohatera(bohater *head,int tryb){
+	if(head==NULL||head->next==NULL){
+		return;
+	}
+	int zmiana;
+	bohater *ptr;
+	do{
+		zmiana=0;
+		ptr=head;
+		while(ptr->next!=NULL){
+			int czyzamienic=0;
+			if(tryb==1){
+				if(strcmp(ptr->imie, ptr->next->imie)>0){
+					czyzamienic=1;
+				}
+			}else{
+				if(ptr->poziom>ptr->next->poziom){
+					czyzamienic=1;
+				}
+			}
+			if (czyzamienic){
+				char temp_imie[MAXIMIE];
+				strcpy(temp_imie, ptr->imie);
+				strcpy(ptr->imie, ptr->next->imie);
+				strcpy(ptr->next->imie, temp_imie);
+				int t_lvl=ptr->poziom;ptr->poziom=ptr->next->poziom; ptr->next->poziom=t_lvl;
+                int t_rep=ptr->reputacja;ptr->reputacja=ptr->next->reputacja;ptr->next->reputacja=t_rep;
+                enum rasabohatera t_rasa = ptr->rasa; ptr->rasa = ptr->next->rasa; ptr->next->rasa = t_rasa;
+                enum klasabohatera t_klas = ptr->klasa; ptr->klasa = ptr->next->klasa; ptr->next->klasa = t_klas;
+                enum statusbohatera t_stat = ptr->status; ptr->status = ptr->next->status; ptr->next->status = t_stat;
+				zmiana=1;
+			}
+			ptr=ptr->next;
+		}
+	}while(zmiana);
+	printf("Sortowanie zakonczone sukcesem:\n");
+}
+
