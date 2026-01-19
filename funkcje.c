@@ -178,3 +178,27 @@ void sortuj_bohatera(bohater *head,int tryb){
 	printf("Sortowanie zakonczone sukcesem:\n");
 }
 
+
+void edytuj_bohatera(bohater *head) {
+    char cel[MAXIMIE];
+    printf("Podaj imie bohatera do edycji: ");
+    scanf("%100s", cel);
+    bohater *akt = head;
+    while (akt != NULL) {
+        if (strcmp(akt->imie, cel) == 0) {
+            printf("Edytujesz: %s. (Imie pozostaje bez zmian)\n", akt->imie);
+            printf("Nowy poziom: "); scanf("%d", &akt->poziom);
+            printf("Nowa reputacja: "); scanf("%d", &akt->reputacja);
+            printf("Nowy status (0-Aktywny, 1-Misja, 2-Ranny, 3-Zaginiony, 4-Zawieszony): ");
+            int s; scanf("%d", &s); akt->status = (enum statusbohatera)s;
+            return;
+        }
+        akt = akt->next;
+    }
+    printf("Nie znaleziono.\n");
+}
+void zwolnij_liste(bohater *head) {
+    while (head) {
+        bohater *tmp = head;
+        head = head->next;
+        free(tmp);
