@@ -5,54 +5,58 @@
 
 int MenuWybor(){
     int wybor;
-    printf("Wybierz opcję (0-8): ");
+    printf("Wybierz opcje (0-9): ");
     scanf("%d", &wybor);
     return wybor;    
 }
 
-void MenuWyswietl(){
+void MenuWyswietl(bohater *head){
     while(1){
-    printf("=== Rejestr Bohaterów Gildii Poszukiwaczy Przygód ===\n");
+    printf("=== Rejestr Bohaterow Gildii Poszukiwaczy Przygod ===\n");
     printf("1. Zarejestruj nowego bohatera\n");
     printf("2. Wyrejestruj bohatera\n");
-    printf("3. Wyświetl listę bohaterów\n");
+    printf("3. Wyswietl liste bohaterow\n");
     printf("4. Wyszukaj bohatera\n");
     printf("5. Modyfikuj dane bohatera\n");
-    printf("6. Posortuj liste bohaterów\n");
+    printf("6. Posortuj liste bohaterow\n");
     printf("7. Wczytaj liste z pliku\n");
     printf("8. Zapisz liste do pliku\n");
-    printf("9. Zwolnij pamięć\n");
-    printf("0. Wyjście z programu\n");
+    printf("9. Zwolnij pamiec\n");
+    printf("0. Wyjscie z programu\n");
     switch(MenuWybor()){
         case 1:
-            
+            head=dodaj_bohatera(head);
             continue;
         case 2:
-            
+            head=usun_bohatera(head);
             continue;
         case 3:
-            
+            wyswietl_liste(head);
             continue;
         case 4:
-            
+            wyszukaj_bohatera(head);
             continue;
         case 5:
-            
+            edytuj_bohatera(head);
             continue;
         case 6:
-            
+            sortuj_bohatera(head, 1);
             continue;
         case 7:
-            
+            head=wczytaj_dane("bazaimport.txt");
             continue;
         case 8:
-            
+            zapisz_dane("bazaexport.txt", head);
+            continue;
+        case 9:
+            zwolnij_liste(head);
+            head = NULL;
             continue;
         case 0:
             printf("Zamykanie programu...\n");
             break;
         default:
-            printf("Nieprawidłowy wybór. Spróbuj ponownie.\n");
+            printf("Nieprawidlowy wybor. Sprobuj ponownie.\n");
             continue;
         }
         break;

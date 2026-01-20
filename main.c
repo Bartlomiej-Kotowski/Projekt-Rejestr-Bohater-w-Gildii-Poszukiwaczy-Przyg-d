@@ -1,6 +1,8 @@
+#include <stdio.h>
 #include "menu.h"
-
+#include "bohater.h"
 int main(){
-    MenuWyswietl();
+    bohater *head=NULL;
+    MenuWyswietl(head);
     return 0;
 }

@@ -1,7 +1,7 @@
 #ifndef FUNKCJE_H
 #define FUNKCJE_H
-
-bohater* dadaj_bohatera(bohater *head);
+#include "bohater.h"
+bohater* dodaj_bohatera(bohater *head);
 bohater* usun_bohatera(bohater *head);
 void edytuj_bohatera(bohater *head);
 void wyszukaj_bohatera(bohater *head);

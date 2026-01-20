@@ -1,5 +1,6 @@
 #include "pliki.h"
 #include <stdio.h>
+#include <stdlib.h>
 int zapisz_dane(const char *nazwapliku,bohater *head)
 {
     FILE *plik=fopen(nazwapliku,"w");
@@ -84,8 +85,8 @@ bohater* wczytaj_dane(const char *nazwapliku)
         nowy->prev=tail;
         tail=nowy;
     }
+}
     fclose(plik);
     printf("Wczytano %d bohaterow z pliku %s\n",ilosc,nazwapliku);
     return head;
-    }
 }

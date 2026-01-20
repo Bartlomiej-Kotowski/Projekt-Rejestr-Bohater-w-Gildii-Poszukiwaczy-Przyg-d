@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "bohater.h"
 
 const char *kalsa[]={"WOJOWNIK","MAG","KAPLAN","LOTRZYK","LOWCA","DRUID"};
@@ -6,7 +8,7 @@ const char *rasa[]={"CZLOWIEK","ELF","KRASNOLUD","ORK","TIEFLING"};
 const char *status[]={"AKTYWNY","NA_MISJI","RANNY","ZAGINIONY","ZAWIESZONY"};
 
 
-bohater* dadaj_bohatera(bohater *head){
+bohater* dodaj_bohatera(bohater *head){
     bohater *nowy=(bohater*)malloc(sizeof(bohater));
     if(nowy==NULL){
         printf("blad nie udalo sie przydzielic pamieci\n");
@@ -15,7 +17,7 @@ bohater* dadaj_bohatera(bohater *head){
     printf("Podaj imie postaci:\n");
     scanf("%100s",nowy->imie);
     int r;
-    printf("0-Człowiek\n");
+    printf("0-Czlowiek\n");
     printf("1-Elf\n");
     printf("2-Krasnolud\n");
     printf("3-Ork\n");
@@ -51,14 +53,14 @@ bohater* dadaj_bohatera(bohater *head){
     if(head!=NULL){
     head->prev=nowy;
     }
-    printf("Bohater %s dodany do bazy pomysnie\n",nowy->imie);
+    printf("Bohater %s dodany do bazy pomyslnie\n",nowy->imie);
     return nowy;
 }
 
 
 bohater* usun_bohatera(bohater *head){
 	if(head==NULL){
-		printf("Baza jest pusta nie ma bohaterów do usunięcia\n");
+		printf("Baza jest pusta nie ma bohaterow do usuniecia\n");
 		return NULL;
 	}
 	char imie_do_u[MAXIMIE];
@@ -68,7 +70,7 @@ bohater* usun_bohatera(bohater *head){
 	while(biezancy!=NULL){
 		if(strcmp(biezancy->imie, imie_do_u)==0){
 			if(biezancy->status==NA_MISJI){
-				printf("Odmowa dostępu bohater znajduje sie aktualnie na misji:\n");
+				printf("Odmowa dostepu bohater znajduje sie aktualnie na misji:\n");
 				return head;
 			}
 			if(biezancy->prev!=NULL){
@@ -93,21 +95,20 @@ bohater* usun_bohatera(bohater *head){
 
 void wyswietl_liste(bohater *head){
     if(head==NULL){
-        printf("Baza jest pusta nie ma bohaterów do wyświetlenia\n");
+        printf("Baza jest pusta nie ma bohaterow do wyswietlenia\n");
         return;
     }
     int t=1;
     bohater *biezancy=head;
-    printf("==== Lista bohaterów ====\n");
-    printf("Indesks  Imie    Rasa      Klasa     Poziom  Reputacja  Status\n");
+    printf("==== Lista bohaterow ====\n");
     while(biezancy!=NULL){
         printf("%d. ", t);
-        printf("%s  ",biezancy->imie);
-        printf("%s  ",rasa[biezancy->rasa]);
-        printf("%s  ",kalsa[biezancy->klasa]);
-        printf("%d  ",biezancy->poziom);
-        printf("%d  ",biezancy->reputacja);
-        printf("%s",status[biezancy->status]);
+        printf("IMIE: %s | ",biezancy->imie);
+        printf("RASA: %s | ",rasa[biezancy->rasa]);
+        printf("KLASA: %s | ",kalsa[biezancy->klasa]);
+        printf("POZIOM: %d | ",biezancy->poziom);
+        printf("REPUTACJA: %d | ",biezancy->reputacja);
+        printf("STATUS: %s",status[biezancy->status]);
         printf("\n");
         t++;
         biezancy=biezancy->next;       
@@ -116,7 +117,7 @@ void wyswietl_liste(bohater *head){
 
 void wyszukaj_bohatera(bohater *head){
 	if(head==NULL){
-	printf("Baza jest pusta nie ma kogo szukać\n");
+	printf("Baza jest pusta nie ma kogo szukac\n");
 		return;
 	}
 	char imieb[MAXIMIE];
