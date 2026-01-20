@@ -3,7 +3,7 @@
 #include <string.h>
 #include "bohater.h"
 
-const char *kalsa[]={"WOJOWNIK","MAG","KAPLAN","LOTRZYK","LOWCA","DRUID"};
+const char *klasy[]={"WOJOWNIK","MAG","KAPLAN","LOTRZYK","LOWCA","DRUID"};
 const char *rasa[]={"CZLOWIEK","ELF","KRASNOLUD","ORK","TIEFLING"};
 const char *status[]={"AKTYWNY","NA_MISJI","RANNY","ZAGINIONY","ZAWIESZONY"};
 
@@ -105,7 +105,7 @@ void wyswietl_liste(bohater *head){
         printf("%d. ", t);
         printf("IMIE: %s | ",biezancy->imie);
         printf("RASA: %s | ",rasa[biezancy->rasa]);
-        printf("KLASA: %s | ",kalsa[biezancy->klasa]);
+        printf("KLASA: %s | ",klasy[biezancy->klasa]);
         printf("POZIOM: %d | ",biezancy->poziom);
         printf("REPUTACJA: %d | ",biezancy->reputacja);
         printf("STATUS: %s",status[biezancy->status]);
@@ -131,7 +131,7 @@ void wyszukaj_bohatera(bohater *head){
 	bohater *biezacy=head;
 	while(biezacy!=NULL){
 		if(strncmp(biezacy->imie, imieb,strlen(imieb))==0&&biezacy->poziom>=minpoziom){
-			printf("%-15s | Klasa: %-10s | Poz:%d | Satatus: %s\n",biezacy->imie,kalsa[biezacy->klasa],biezacy->poziom,status[biezacy->status] );
+			printf("%-15s | Klasa: %-10s | Poz:%d | Satatus: %s\n",biezacy->imie,klasy[biezacy->klasa],biezacy->poziom,status[biezacy->status] );
 			znaleziono=1;
 		}
 		biezacy=biezacy->next;

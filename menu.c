@@ -6,11 +6,14 @@
 int MenuWybor(){
     int wybor;
     printf("Wybierz opcje (0-9): ");
-    scanf("%d", &wybor);
+    if(scanf("%d", &wybor)!=1){
+		while(getchar() != '\n');
+		return -1;
+	}
     return wybor;    
 }
 
-void MenuWyswietl(bohater *head){
+bohater* MenuWyswietl(bohater *head,const char *nazwaPliku){
     while(1){
     printf("=== Rejestr Bohaterow Gildii Poszukiwaczy Przygod ===\n");
     printf("1. Zarejestruj nowego bohatera\n");
@@ -19,8 +22,8 @@ void MenuWyswietl(bohater *head){
     printf("4. Wyszukaj bohatera\n");
     printf("5. Modyfikuj dane bohatera\n");
     printf("6. Posortuj liste bohaterow\n");
-    printf("7. Wczytaj liste z pliku\n");
-    printf("8. Zapisz liste do pliku\n");
+    printf("7. Wczytaj liste z pliku %s\n",nazwaPliku);
+    printf("8. Zapisz liste do pliku %s\n",nazwaPliku);
     printf("9. Zwolnij pamiec\n");
     printf("0. Wyjscie z programu\n");
     switch(MenuWybor()){
@@ -43,10 +46,10 @@ void MenuWyswietl(bohater *head){
             sortuj_bohatera(head, 1);
             continue;
         case 7:
-            head=wczytaj_dane("bazaimport.txt");
+            head=wczytaj_dane(nazwaPliku);
             continue;
         case 8:
-            zapisz_dane("bazaexport.txt", head);
+            zapisz_dane(nazwaPliku, head);
             continue;
         case 9:
             zwolnij_liste(head);
@@ -54,9 +57,10 @@ void MenuWyswietl(bohater *head){
             continue;
         case 0:
             printf("Zamykanie programu...\n");
-            break;
+			zwolnij_liste(head);
+			return NULL;
         default:
-            printf("Nieprawidlowy wybor. Sprobuj ponownie.\n");
+            printf("Nieprawidlowy wybor. Sprobuj ponownie :( \n");
             continue;
         }
         break;
