@@ -87,15 +87,5 @@ bohater* wczytaj_dane(const char *nazwapliku)
     fclose(plik);
     printf("Wczytano %d bohaterow z pliku %s\n",ilosc,nazwapliku);
     return head;
-}
-void zwolnij_dane(bohater *head)
-{
-    bohater *p=head;
-    while(p!=NULL)
-    {
-        bohater *tab=p;
-        p=p->next;
-        free(tab);
     }
-    printf("Zwolniono pamiec zajmowana przez liste bohaterow\n");
 }

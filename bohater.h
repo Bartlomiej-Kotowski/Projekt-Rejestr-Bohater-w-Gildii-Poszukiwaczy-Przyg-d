@@ -38,4 +38,5 @@ typedef struct bohater{
     struct bohater *prev;
 } bohater;
 
+
 #endif

@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #include "menu.h"
 #include "funkcje.h"
 #include "pliki.h"
@@ -21,6 +21,7 @@ void MenuWyswietl(){
     printf("6. Posortuj liste bohaterów\n");
     printf("7. Wczytaj liste z pliku\n");
     printf("8. Zapisz liste do pliku\n");
+    printf("9. Zwolnij pamięć\n");
     printf("0. Wyjście z programu\n");
     switch(MenuWybor()){
         case 1:

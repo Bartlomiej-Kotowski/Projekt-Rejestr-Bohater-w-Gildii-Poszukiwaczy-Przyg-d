@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "funkcje.h"
+#include "bohater.h"
 
 const char *kalsa[]={"WOJOWNIK","MAG","KAPLAN","LOTRZYK","LOWCA","DRUID"};
 const char *rasa[]={"CZLOWIEK","ELF","KRASNOLUD","ORK","TIEFLING"};
@@ -36,7 +36,7 @@ bohater* dadaj_bohatera(bohater *head){
     printf("Podaj poziom bohatera:\n");
     scanf("%d",&nowy->poziom);
     printf("Punkty reputacji (1-100):\n");
-    scanf("%d",&nowy->punkty);
+    scanf("%d",&nowy->reputacja);
     int s;
     printf("0-Aktywny\n");
     printf("1-Na_misji\n");
@@ -45,7 +45,7 @@ bohater* dadaj_bohatera(bohater *head){
     printf("4-Zawieszony\n");
     printf("Wybierz status\n");
     scanf("%d",&s);
-    nowy->status=(enum statusbohater)s;
+    nowy->status=(enum statusbohatera)s;
     nowy->next=head;
     nowy->prev=NULL;
     if(head!=NULL){
@@ -106,7 +106,7 @@ void wyswietl_liste(bohater *head){
         printf("%s  ",rasa[biezancy->rasa]);
         printf("%s  ",kalsa[biezancy->klasa]);
         printf("%d  ",biezancy->poziom);
-        printf("%d  ",biezancy->punkty);
+        printf("%d  ",biezancy->reputacja);
         printf("%s",status[biezancy->status]);
         printf("\n");
         t++;
@@ -130,7 +130,7 @@ void wyszukaj_bohatera(bohater *head){
 	bohater *biezacy=head;
 	while(biezacy!=NULL){
 		if(strncmp(biezacy->imie, imieb,strlen(imieb))==0&&biezacy->poziom>=minpoziom){
-			printf("%-15s | Klasa: %-10s | Poz:%d | Satatus: %s\n",biezacy->imie,klasabohatera[biezacy->klasabohatera],biezacy->poziom,statusbohatera[biezacy->statusbohatera] );
+			printf("%-15s | Klasa: %-10s | Poz:%d | Satatus: %s\n",biezacy->imie,kalsa[biezacy->klasa],biezacy->poziom,status[biezacy->status] );
 			znaleziono=1;
 		}
 		biezacy=biezacy->next;
@@ -202,3 +202,5 @@ void zwolnij_liste(bohater *head) {
         bohater *tmp = head;
         head = head->next;
         free(tmp);
+    }
+}
