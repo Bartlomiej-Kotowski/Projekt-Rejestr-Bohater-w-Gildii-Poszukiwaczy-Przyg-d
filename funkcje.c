@@ -14,8 +14,17 @@ bohater* dodaj_bohatera(bohater *head){
         printf("blad nie udalo sie przydzielic pamieci\n");
 		return head;
     }
-    printf("Podaj imie postaci:\n");
-    scanf("%100s",nowy->imie);
+    int c;
+    printf("Podaj imie postaci (bez spacji!):\n");
+    while ((c = getchar()) != '\n' && c != EOF);
+    while(1){
+        fgets(nowy->imie, MAXIMIE, stdin);
+        nowy->imie[strcspn(nowy->imie, "\n")] = '\0';
+        if(strchr(nowy->imie, ' ') == NULL){
+            break;
+        }
+        printf("Nieprawidlowe imie. Sprobuj ponownie:\n");
+    }
     int r;
     printf("0-Czlowiek\n");
     printf("1-Elf\n");
@@ -23,7 +32,10 @@ bohater* dodaj_bohatera(bohater *head){
     printf("3-Ork\n");
     printf("4-Tiefling\n");
     printf("Wybierz rase\n");
-    scanf("%d",&r);
+    while(scanf("%d",&r)!=1 || (r<0 || r>4)){
+        while(getchar() != '\n');
+        printf("Nieprawidlowy wybor. Sprobuj ponownie:\n");
+    }
     nowy->rasa=(enum rasabohatera)r;
     int k;
     printf("0-Wojownik\n");
@@ -33,12 +45,21 @@ bohater* dodaj_bohatera(bohater *head){
     printf("4-Lowca\n");
     printf("5-Druid\n");
     printf("Wybierz klase\n");
-    scanf("%d",&k);
+    while(scanf("%d",&k)!=1 || (k<0 || k>5)){
+        while(getchar() != '\n');
+        printf("Nieprawidlowy wybor. Sprobuj ponownie:\n");
+    }
     nowy->klasa=(enum klasabohatera)k;
     printf("Podaj poziom bohatera:\n");
-    scanf("%d",&nowy->poziom);
+    while(scanf("%d",&nowy->poziom)!=1 || nowy->poziom<1){
+        while(getchar() != '\n');
+        printf("Nieprawidlowy poziom. Sprobuj ponownie:\n");
+    }
     printf("Punkty reputacji (1-100):\n");
-    scanf("%d",&nowy->reputacja);
+    while(scanf("%d",&nowy->reputacja)!=1 || (nowy->reputacja<1 || nowy->reputacja>100)){
+        while(getchar() != '\n');
+        printf("Nieprawidlowe punkty reputacji. Sprobuj ponownie (1-100):\n");
+    }
     int s;
     printf("0-Aktywny\n");
     printf("1-Na_misji\n");
@@ -46,7 +67,10 @@ bohater* dodaj_bohatera(bohater *head){
     printf("3-Zaginiony\n");
     printf("4-Zawieszony\n");
     printf("Wybierz status\n");
-    scanf("%d",&s);
+    while(scanf("%d",&s)!=1 || (s<0 || s>4)){
+        while(getchar() != '\n');
+        printf("Nieprawidlowy wybor. Sprobuj ponownie:\n");
+    }
     nowy->status=(enum statusbohatera)s;
     nowy->next=head;
     nowy->prev=NULL;
@@ -64,8 +88,17 @@ bohater* usun_bohatera(bohater *head){
 		return NULL;
 	}
 	char imie_do_u[MAXIMIE];
-	printf("Podaj imie bohatera do usuniecia:\n");
-	scanf("%100s",imie_do_u);
+    int c;
+	printf("Podaj imie bohatera do usuniecia (bez spacji!):\n");
+	while ((c = getchar()) != '\n' && c != EOF);
+    while(1){
+        fgets(imie_do_u, MAXIMIE, stdin);
+        imie_do_u[strcspn(imie_do_u, "\n")] = '\0';
+        if(strchr(imie_do_u, ' ') == NULL){
+            break;
+        }
+        printf("Nieprawidlowe imie. Sprobuj ponownie:\n");
+    }
 	bohater *biezancy=head;
 	while(biezancy!=NULL){
 		if(strcmp(biezancy->imie, imie_do_u)==0){
@@ -123,11 +156,23 @@ void wyszukaj_bohatera(bohater *head){
 	char imieb[MAXIMIE];
 	int minpoziom;
 	int znaleziono=0;
-	printf("Podaj imie badz poczatek imienia bohatera ktorego szukasz:\n");
-	scanf("%100s",imieb);
+    int c;
+	printf("Podaj imie badz poczatek imienia bohatera ktorego szukasz (bez spacji!):\n");
+	while ((c = getchar()) != '\n' && c != EOF);
+    while(1){
+        fgets(imieb, MAXIMIE, stdin);
+        imieb[strcspn(imieb, "\n")] = '\0';
+        if(strchr(imieb, ' ') == NULL){
+            break;
+        }
+        printf("Nieprawidlowe imie. Sprobuj ponownie:\n");
+    }
 	printf("Minimalny poziom bohatera\n");
-	scanf("%d",&minpoziom);
-	printf("---WYNIKI POSZUKIWAN (IMIE NA: '%s', POZIOM: %d+\n",imieb,minpoziom);
+	while(scanf("%d",&minpoziom)!=1 || minpoziom<1){
+        while(getchar() != '\n');
+        printf("Nieprawidlowy poziom. Sprobuj ponownie:\n");
+    }
+	printf("---WYNIKI POSZUKIWAN (IMIE NA: '%s', POZIOM: %d+)\n",imieb,minpoziom);
 	bohater *biezacy=head;
 	while(biezacy!=NULL){
 		if(strncmp(biezacy->imie, imieb,strlen(imieb))==0&&biezacy->poziom>=minpoziom){
@@ -182,16 +227,38 @@ void sortuj_bohatera(bohater *head,int tryb){
 
 void edytuj_bohatera(bohater *head) {
     char cel[MAXIMIE];
-    printf("Podaj imie bohatera do edycji: ");
-    scanf("%100s", cel);
+    int c;
+    printf("Podaj imie bohatera do edycji (bez spacji!): ");
+    while ((c = getchar()) != '\n' && c != EOF);
+    while(1){
+        fgets(cel, MAXIMIE, stdin);
+        cel[strcspn(cel, "\n")] = '\0';
+        if(strchr(cel, ' ') == NULL){
+            break;
+        }
+        printf("Nieprawidlowe imie. Sprobuj ponownie:\n");
+    }
     bohater *akt = head;
     while (akt != NULL) {
         if (strcmp(akt->imie, cel) == 0) {
             printf("Edytujesz: %s. (Imie pozostaje bez zmian)\n", akt->imie);
-            printf("Nowy poziom: "); scanf("%d", &akt->poziom);
-            printf("Nowa reputacja: "); scanf("%d", &akt->reputacja);
+            printf("Nowy poziom: "); 
+            while(scanf("%d", &akt->poziom)!=1 || akt->poziom<1){
+                while(getchar() != '\n');
+                printf("Nieprawidlowy poziom. Sprobuj ponownie:\n");
+            }
+            printf("Nowa reputacja: "); 
+            while(scanf("%d", &akt->reputacja)!=1 || akt->reputacja<0){
+                while(getchar() != '\n');
+                printf("Nieprawidlowa reputacja. Sprobuj ponownie:\n");
+            }
             printf("Nowy status (0-Aktywny, 1-Misja, 2-Ranny, 3-Zaginiony, 4-Zawieszony): ");
-            int s; scanf("%d", &s); akt->status = (enum statusbohatera)s;
+            int s; 
+            while(scanf("%d", &s)!=1 || (s<0 || s>4)){
+                while(getchar() != '\n');
+                printf("Nieprawidlowy wybor. Sprobuj ponownie:\n");
+            }
+            akt->status = (enum statusbohatera)s;
             return;
         }
         akt = akt->next;

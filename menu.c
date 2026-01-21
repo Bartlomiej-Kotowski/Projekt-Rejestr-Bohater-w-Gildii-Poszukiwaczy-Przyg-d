@@ -47,10 +47,9 @@ void MenuWyswietl(bohater *head){
             printf("Wybierz tryb sortowania:\n");
             printf("1. Alfabetycznie po imieniu\n");
             printf("2. Rosnaco po poziomie\n");
-            if(scanf("%d", &tryb)!=1 || (tryb!=1 && tryb!=2)){
+            while(scanf("%d", &tryb)!=1 || (tryb!=1 && tryb!=2)){
 		        while(getchar() != '\n');
                 printf("Nieprawidlowy wybor. Sprobuj ponownie :( \n");
-		        return -1;
 	        }
             sortuj_bohatera(head, tryb);
             continue;
@@ -67,7 +66,7 @@ void MenuWyswietl(bohater *head){
         case 0:
             printf("Zamykanie programu...\n");
 			zwolnij_liste(head);
-			return NULL;
+            break;
         default:
             printf("Nieprawidlowy wybor. Sprobuj ponownie :( \n");
             continue;
