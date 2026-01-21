@@ -13,7 +13,7 @@ int MenuWybor(){
     return wybor;    
 }
 
-bohater* MenuWyswietl(bohater *head,const char *nazwaPliku){
+void MenuWyswietl(bohater *head){
     while(1){
     printf("=== Rejestr Bohaterow Gildii Poszukiwaczy Przygod ===\n");
     printf("1. Zarejestruj nowego bohatera\n");
@@ -22,8 +22,8 @@ bohater* MenuWyswietl(bohater *head,const char *nazwaPliku){
     printf("4. Wyszukaj bohatera\n");
     printf("5. Modyfikuj dane bohatera\n");
     printf("6. Posortuj liste bohaterow\n");
-    printf("7. Wczytaj liste z pliku %s\n",nazwaPliku);
-    printf("8. Zapisz liste do pliku %s\n",nazwaPliku);
+    printf("7. Wczytaj liste z pliku bohaterowieI.txt\n");
+    printf("8. Zapisz liste do pliku bohaterowieE.txt\n");
     printf("9. Zwolnij pamiec\n");
     printf("0. Wyjscie z programu\n");
     switch(MenuWybor()){
@@ -43,13 +43,22 @@ bohater* MenuWyswietl(bohater *head,const char *nazwaPliku){
             edytuj_bohatera(head);
             continue;
         case 6:
-            sortuj_bohatera(head, 1);
+            int tryb;
+            printf("Wybierz tryb sortowania:\n");
+            printf("1. Alfabetycznie po imieniu\n");
+            printf("2. Rosnaco po poziomie\n");
+            if(scanf("%d", &tryb)!=1 || (tryb!=1 && tryb!=2)){
+		        while(getchar() != '\n');
+                printf("Nieprawidlowy wybor. Sprobuj ponownie :( \n");
+		        return -1;
+	        }
+            sortuj_bohatera(head, tryb);
             continue;
-        case 7:
-            head=wczytaj_dane(nazwaPliku);
+        case 7:           
+            head=wczytaj_dane("bohaterowieI.txt");
             continue;
         case 8:
-            zapisz_dane(nazwaPliku, head);
+            zapisz_dane("bohaterowieE.txt", head);
             continue;
         case 9:
             zwolnij_liste(head);
